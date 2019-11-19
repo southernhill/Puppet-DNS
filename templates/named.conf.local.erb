@@ -1,0 +1,15 @@
+<% @zones.each do |name, key| -%>
+  zone "<%=name%>" {
+  <% key.each do |name, value| -%>
+    <% if ['allow-transfer', 'masters'].include? name %>
+      <%=name%> {
+        <% value.each do |transfer| -%>
+          <%=transfer%>;
+        <% end -%>
+      };
+    <% else %>
+      <%=name%> <%=value%>;
+    <% end %>
+  <% end -%>
+  };
+<% end -%>
